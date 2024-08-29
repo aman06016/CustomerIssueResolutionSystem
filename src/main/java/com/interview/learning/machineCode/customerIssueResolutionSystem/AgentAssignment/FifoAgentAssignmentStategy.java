@@ -9,6 +9,7 @@ import com.interview.learning.machineCode.customerIssueResolutionSystem.service.
 import com.interview.learning.machineCode.customerIssueResolutionSystem.states.AgentState;
 import com.interview.learning.machineCode.customerIssueResolutionSystem.states.IssueState;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,9 @@ public class FifoAgentAssignmentStategy implements AgentAssignmentStategy{
             issue.setAgentId(agent.getId());
             issue.setIssueState(IssueState.picked);
             agent.setAgentState(AgentState.busy);
-            System.out.println(String.format("%s is assign to %s" , "issue " + issue.getAgentId() , agent.getName()));
+            issueRepository.getMapOfAgentIdToIssues().computeIfAbsent(agent.getId(), x-> new ArrayList<>());
+            issueRepository.getMapOfAgentIdToIssues().get(agent.getId()).add(issue);
+            System.out.println(String.format("issue %s is assign to %s" ,   issue.getId() , agent.getName()));
         }
     }
 }

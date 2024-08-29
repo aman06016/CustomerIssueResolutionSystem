@@ -1,6 +1,7 @@
 package com.interview.learning.machineCode.customerIssueResolutionSystem.repository;
 
 import com.interview.learning.machineCode.customerIssueResolutionSystem.model.Agent;
+import com.interview.learning.machineCode.customerIssueResolutionSystem.model.Issue;
 import com.interview.learning.machineCode.customerIssueResolutionSystem.states.IssueType;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class AgentRepository {
         return agent;
     }
 
+    public Agent findById(String id){
+        return mapOfIdToAgent.get(id);
+    }
+
     public List<Agent> getListOfAgentOfIssueType(IssueType issueType){
         return mapOfIssueTypeToAgent.get(issueType);
     }
@@ -58,6 +63,7 @@ public class AgentRepository {
     public void setMapOfIssueTypeToAgent(Map<IssueType, List<Agent>> mapOfIssueTypeToAgent) {
         this.mapOfIssueTypeToAgent = mapOfIssueTypeToAgent;
     }
+
 
 
 }

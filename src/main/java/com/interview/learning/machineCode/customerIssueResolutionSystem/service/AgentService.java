@@ -29,10 +29,15 @@ public class AgentService {
 
     }
 
-    private void viewAgentWorkHistory(){
+    public void viewAgentWorkHistory(){
         for(Map.Entry<String,List<Issue>> entry :issueRepository.getMapOfAgentIdToIssues().entrySet()){
-            System.out.println(entry.getKey());
-            System.out.println(entry.getValue());
+            Agent agent = agentRepository.findById(entry.getKey());
+            System.out.println(String.format("issue of agent %s are = " , agent.getName()));
+
+            for (var issue : entry.getValue()){
+                System.out.println(issue);
+            }
+
         }
     }
 }

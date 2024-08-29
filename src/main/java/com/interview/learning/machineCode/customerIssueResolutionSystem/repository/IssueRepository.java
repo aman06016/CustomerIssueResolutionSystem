@@ -30,6 +30,7 @@ public class IssueRepository {
     public Issue save(Issue issue){
         mapOfIdToIssue.put(issue.getId(),issue);
         listOfIssues.add(issue);
+
         return issue;
     }
 
